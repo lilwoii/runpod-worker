@@ -1,2 +1,0 @@
-runpod
-torch==2.4.0     # or a compatible version supported by the RunPod image
