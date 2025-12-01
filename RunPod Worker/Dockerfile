@@ -1,18 +1,16 @@
-# Very simple, RunPod-friendly serverless worker Dockerfile
+# Simple, RunPod-friendly Dockerfile
 
-# Use a plain Python base image (no special CUDA image needed;
-# RunPod attaches the GPU to this container)
-FROM python:3.10-slim
+FROM python:3.11.1-buster
 
-# Work inside /app
+# Work directory
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install deps early so they get cached
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Copy handler
-COPY handler.py .
+COPY handler.py /app/handler.py
 
-# Start the worker
-CMD ["python", "-u", "handler.py"]
+# Entry point – RunPod serverless will just run this container
+CMD ["python", "-u", "/app/handler.py"]
