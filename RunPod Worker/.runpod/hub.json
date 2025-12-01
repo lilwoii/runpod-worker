@@ -1,25 +1,18 @@
 {
-  "title": "Woi AI Trainer Worker",
-  "description": "Serverless trainer for Woi's Assistant (light/heavy training).",
+  "title": "Woi Remote Trainer",
+  "description": "Remote H100/A100 trainer for Woi's Assistant",
   "type": "serverless",
   "category": "image",
-  "iconUrl": "https://api.runpod.io/static/media/runpod-logo.9f389c67bcd1fceea41f.png",
+  "iconUrl": "https://runpod.io/favicon.ico",
   "config": {
     "runsOn": "GPU",
     "containerDiskInGb": 20,
     "presets": [
       {
         "name": "Default",
-        "defaults": {
-          "HEAVY_DEFAULT": "false"
-        }
+        "defaults": {}
       }
     ],
-    "env": [
-      {
-        "key": "STATIC_INFO",
-        "value": "Woi Trainer Worker"
-      }
-    ]
+    "env": []
   }
 }
