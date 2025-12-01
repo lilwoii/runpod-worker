@@ -1,14 +1,18 @@
-# Example base image; in RunPod UI you can choose an image that matches this.
-FROM runpod/pytorch:2.4.0-py3.10-cuda12.1-runtime
+# Very simple, RunPod-friendly serverless worker Dockerfile
 
+# Use a plain Python base image (no special CUDA image needed;
+# RunPod attaches the GPU to this container)
+FROM python:3.10-slim
+
+# Work inside /app
 WORKDIR /app
 
-# Copy code
-COPY handler.py /app/handler.py
-COPY requirements.txt /app/requirements.txt
-
-# Install deps
+# Install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# RunPod will call "python -m handler" or similar via runpod.serverless.start
+# Copy handler
+COPY handler.py .
+
+# Start the worker
 CMD ["python", "-u", "handler.py"]
