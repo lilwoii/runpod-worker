@@ -1,0 +1,25 @@
+{
+  "title": "Woi AI Trainer Worker",
+  "description": "Serverless trainer for Woi's Assistant (light/heavy training).",
+  "type": "serverless",
+  "category": "image",
+  "iconUrl": "https://api.runpod.io/static/media/runpod-logo.9f389c67bcd1fceea41f.png",
+  "config": {
+    "runsOn": "GPU",
+    "containerDiskInGb": 20,
+    "presets": [
+      {
+        "name": "Default",
+        "defaults": {
+          "HEAVY_DEFAULT": "false"
+        }
+      }
+    ],
+    "env": [
+      {
+        "key": "STATIC_INFO",
+        "value": "Woi Trainer Worker"
+      }
+    ]
+  }
+}
